@@ -1,0 +1,35 @@
+@mixin hover-out {
+    transition: all .5s ease-in-out;
+}
+
+@mixin hover-linear {
+    transition: all .5s linear;
+}
+
+@mixin modal-position {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+@mixin box {
+    height: 80px;
+    width: 80px;
+    background-color:$grey-50;
+    border:1px solid $grey-200;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+@mixin arrow {
+    border: solid $black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(135deg);
+    @include hover-out;
+}

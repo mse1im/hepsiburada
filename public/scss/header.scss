@@ -1,0 +1,34 @@
+@import "_variables";
+@import "_mixin";
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    border-bottom: 1px solid $grey-400;
+
+    @media screen and (max-width: $screensm) {
+        flex-direction: column;
+        justify-content: center;
+        height: 120px;
+
+        h1 {
+            margin-top: .5rem;
+        }
+    }
+
+    svg {
+        fill:$grey-400;
+        height: 35px;
+        width: 200px;
+    }
+
+    h1 {
+        font-weight: 300;
+
+        span {
+            font-weight: 600;
+        }
+    }
+}

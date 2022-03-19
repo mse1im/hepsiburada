@@ -1,0 +1,57 @@
+.gr {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $pr;
+    padding-left: $pl;
+}
+
+@media (min-width: $screens) {
+    .gr {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: $screensm) {
+
+    .gr {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: $screenmd) {
+
+    .gr {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: $screenlg) {
+
+    .gr {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: $screenxl) {
+
+    .gr {
+        max-width: 1320px;
+    }
+}
+
+.gr-md {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+    @media screen and (max-width: $screenlg) {
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+    }
+
+    @media screen and (max-width: $screenmd) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

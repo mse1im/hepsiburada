@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: $htmlSize;
+    overflow-x: hidden;
+}
+
+body {
+    background: $bodyColor;
+    font-size: $bodySize;
+    font-family: $fontFamily;
+    color:$black;
+    overflow-x: hidden;
+
+    ::selection {
+        color: $white;
+        background: $black;
+    }
+}
+
+html, body {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color:$black;
+    transition: all .5s ease-in-out;
+
+    &:hover {
+        text-decoration: none;
+        transition: all .5s ease-in-out;
+    }
+
+    &:link {
+        text-decoration: none;
+        word-break: break-word;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+button,
+input {
+    border: none;
+    font-family: $fontFamily;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+dl, ol, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+h1 {
+    font-size: $fontxl;
+}
+
+h2 {
+    font-size: $fontlg;
+}
+
+h3 {
+    font-size: $fontl;
+}
+
+h4, h5 {
+    font-size: $fontm;
+}
+
+h6 {
+    font-size: $fonts;
+}
+
+figure {
+    figcaption {
+        display: none;
+    }
+}

@@ -1,0 +1,35 @@
+/*main color configure*/
+$currentColor:black;
+$bodyColor:white;
+/*color configure*/
+$white:#eeedf6;
+$grey:#ececec;
+$grey-50:#d7d7d7;
+$grey-100:#d6d1d1;
+$grey-200:#babdbf;
+$grey-300:#7e7e7e;
+$grey-400:#969696;
+$green:#dcf9d3;
+$green-100:#5aad5b;
+$red:linear-gradient(180deg, rgba(248,36,2,1) 0%, rgba(148,38,38,1) 100%);
+$black:black;
+/*media screen configure*/
+$screenmd: 992px;
+$screenlg: 1200px;
+$screenxl: 1400px;
+$screensm: 768px;
+$screens: 576px;
+$pl:1rem;
+$pr:1rem;
+/*font configure*/
+$fontFamily: 'Poppins', sans-serif;
+$bodySize: 1.4rem;
+$htmlSize: 10px;
+$smallSize: 1.2rem;
+$fonts: 1.2rem;
+$fontm: 1.6rem;
+$fontl: 2rem;
+$fontlg: 2.5rem;
+$fontxl: 3rem;
+/*url configure*/
+$url: "/";
