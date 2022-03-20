@@ -6,7 +6,6 @@
 
 html {
     font-size: $htmlSize;
-    overflow-x: hidden;
 }
 
 body {
@@ -14,16 +13,11 @@ body {
     font-size: $bodySize;
     font-family: $fontFamily;
     color:$black;
-    overflow-x: hidden;
 
     ::selection {
         color: $white;
         background: $black;
     }
-}
-
-html, body {
-    height: 100%;
 }
 
 a {
@@ -66,14 +60,6 @@ dl, ol, ul, li {
     list-style: none;
 }
 
-.text-center {
-    text-align: center !important;
-}
-
-.text-left {
-    text-align: left !important;
-}
-
 h1 {
     font-size: $fontxl;
 }
@@ -92,10 +78,4 @@ h4, h5 {
 
 h6 {
     font-size: $fonts;
-}
-
-figure {
-    figcaption {
-        display: none;
-    }
 }
