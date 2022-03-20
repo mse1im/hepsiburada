@@ -33,3 +33,23 @@
     transform: rotate(135deg);
     @include hover-out;
 }
+
+@mixin box-shadow {
+    box-shadow: 0 0px 3px 1px #00000012;
+}
+
+@mixin btn {
+    border-radius: 50px;
+    background: $black;
+    color: white;
+    font-size: $fontl;
+    padding: 5px 35px;
+    font-weight: 600;
+    @include hover-out;
+
+    &:hover {
+        background: $grey-50;
+        color: $black;
+        @include hover-out;
+    }
+}

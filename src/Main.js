@@ -2,9 +2,8 @@ import React from "react";
 
 export default function Main() {
   return (
-    <main className="gr gr-md">
-      <div className="row"></div>
-      <div className="row">
+    <main className="gr">
+      <div className="gr-md">
         <div className="submit">
           <div className="plus">
             <svg
@@ -238,8 +237,26 @@ export default function Main() {
           </div>
           <button>ADD</button>
         </div>
+        <div className="confirm">
+          <span>REDDIT <span className="txt">added.</span></span>
+        </div>
+        <div className="overlay">
+          <div className="alert">
+            <div className="title">
+              <h4>Remove Link</h4>
+              <div className="remove">X</div>
+            </div>
+            <div className="box">
+              <span>Do you want to remove:</span>
+              <h3>REDDIT</h3>
+              <div className="btn">
+                <button>OK</button>
+                <button>CANCEL</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="row"></div>
     </main>
   );
 }
