@@ -10,36 +10,38 @@ main {
     justify-content: center;
 
     .submit {
-        background: $grey;
-        height: 100px;
-        border-radius: 4px;
-        border: 1px solid $grey-50;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        cursor: pointer;
-        @include box-shadow;
-        @include hover-out;
-
-        .plus {
-            @include box;
-
-            svg {
-                height: 50px;
-                width: 50px;
-            }
-        }
-
-        span {
-            font-size: $fontxl;
-            color: $black;
-            font-weight: 600;
-            align-self: center;
-        }
-
-        &:hover {
-            box-shadow: unset;
+        a {
+            background: $grey;
+            height: 100px;
+            border-radius: 4px;
+            border: 1px solid $grey-50;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            @include box-shadow;
             @include hover-out;
+    
+            .plus {
+                @include box;
+    
+                svg {
+                    height: 50px;
+                    width: 50px;
+                }
+            }
+    
+            span {
+                font-size: $fontxl;
+                color: $black;
+                font-weight: 600;
+                align-self: center;
+            }
+    
+            &:hover {
+                box-shadow: unset;
+                @include hover-out;
+            }
         }
     }
 
@@ -93,10 +95,11 @@ main {
                     border: 1px solid $grey-400;
                     height: 40px;
                     padding:7px 15px;
+                    display: flex;
                 }
             }
 
-            &:hover {
+            &.show {
                 ul {
                     opacity: 1;
                     visibility: visible;
@@ -135,6 +138,7 @@ main {
             display: flex;
             justify-content: space-between;
             flex-direction: column;
+            width: 100%;
 
             .title {
                 h3 {
@@ -236,7 +240,7 @@ main {
     .pagination {
         display: flex;
         justify-content: center;
-        margin-top: 2rem;
+        margin-top: 4rem;
 
         ul {
             display: flex;
@@ -326,7 +330,7 @@ main {
         }
     }
 
-    .confirm {
+    .msg {
         height: 50px;
         background-color: $green;
         border:1px solid $green-100;
@@ -347,12 +351,6 @@ main {
             font-weight: 700;
             color:$green-100;
             font-size: $fontl;
-            text-transform: uppercase;
-        }
-
-        span.txt {
-            font-weight: 400;
-            text-transform: lowercase;
         }
     }
 
@@ -362,7 +360,7 @@ main {
         position: fixed;
         top:0;
         right:0;
-        background-color: rgba(0, 0, 0, 0.151);
+        background-color: #00000094;
 
         .alert {
             width: 450px;
