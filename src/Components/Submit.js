@@ -5,10 +5,7 @@ export default function Submit() {
   const [message, setMessage] = useState("");
   const seriesName = useRef();
   const seriesURL = useRef();
-  let data =
-    localStorage.getItem("series") != null
-      ? JSON.parse(localStorage.getItem("series"))
-      : [];
+  let data = localStorage.getItem("series") != null ? JSON.parse(localStorage.getItem("series")) : [];
   const validURL = "https://";
   const regex = new RegExp(validURL);
 
@@ -35,33 +32,30 @@ export default function Submit() {
       seriesURL.current.value.length === 0
     ) {
       showInfo("Fill in the blanks");
-    } else if (
-      seriesName.current.value.length < 5 &&
-      seriesURL.current.value.length < 15
-    ) {
-      showInfo("Series field should be at least 5 characters, Series url should be at least 15 characters");
-    } else {
+    } else if(seriesName.current.value.length < 5 &&
+      seriesURL.current.value.length < 15){
+        showInfo("Series field should be at least 5 characters, Series url should be at least 15 characters");
+    }else {
       if (regex.test(seriesURL.current.value)) {
         let newData = {
           point: 1,
           title: seriesName.current.value,
           url: seriesURL.current.value,
         };
-        if (data.length === 0) {
-          localStorage.setItem("series", JSON.stringify(newData));
-        } else {
+        if(localStorage.getItem("series") !== null && data.length === 0){
+          localStorage.setItem("series", JSON.stringify([newData]));
+          showInfo(`${seriesName.current.value} successfully added!`,true);
+        }else {
           data.unshift(newData);
-          localStorage.setItem("series", JSON.stringify(data));
-          showInfo(
-            `${seriesName.current.value} added.`,
-            true
-          );
+          localStorage.setItem("series",JSON.stringify(data));
+          showInfo(`${seriesName.current.value} successfully added!`,true);
         }
       } else {
         showInfo("Not a valid URL");
       }
     }
-  };
+  }
+
   return (
     <main className="gr">
       <div className="gr-md">
@@ -78,7 +72,6 @@ export default function Submit() {
               id="name"
               name="name"
               placeholder="e.g. Alphabet"
-              controlId="formLinkName"
               ref={seriesName}
             />
           </div>

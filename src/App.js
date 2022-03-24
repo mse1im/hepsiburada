@@ -11,6 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />}/>
+        <Route path="/:id" element={<Main/>} />
         <Route path="/submit" element={<Submit />}/>
       </Routes>
     </Suspense>

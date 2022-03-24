@@ -49,63 +49,14 @@ main {
         border-top: 2px solid $grey-50;
         margin-top: 2rem;
         padding: 1rem 0;
+        position: relative;
 
-        .orderby {
-            position: relative;
+        select {
             background: #f1f1f1;
             border:1px solid $grey-50;
             height: 40px;
             padding:7px 15px;
             border-radius: 4px;
-
-            &::after {
-                content: '';
-                width: 0;
-                height: 0;
-                border-left: 5px solid transparent;
-                border-right: 5px solid transparent;
-                border-top: 5px solid #000000;
-                right: 12px;
-                top: 16px;
-                position: absolute;
-                pointer-events: none;
-            }
-
-            &::before {
-                content:'';
-                border-left:1px solid $grey-50;
-                height: 40px;
-                position: absolute;
-                top: -1px;
-                right: 35px;
-            }
-
-            ul {
-                opacity: 0;
-                visibility: hidden;
-                @include hover-out;
-                position: absolute;
-                top:35px;
-                left:0;
-                background-color: $grey-50;
-                width: 100%;
-                z-index: 2;
-
-                li {
-                    border: 1px solid $grey-400;
-                    height: 40px;
-                    padding:7px 15px;
-                    display: flex;
-                }
-            }
-
-            &.show {
-                ul {
-                    opacity: 1;
-                    visibility: visible;
-                    @include hover-out;
-                }
-            }
         }
     }
 
