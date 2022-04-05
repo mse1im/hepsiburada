@@ -3,11 +3,11 @@ import { series } from "./series";
 
 export default function Main() {
   const [show, setShow] = useState(false);
-  const [listSeries, setListSeries] = useState([]);
+  const [listSeries, setListSeries] = useState(series);
   const [message, setMessage] = useState(false);
   const [seriesName, setSeriesName] = useState("");
   const [seriesFilter, setseriesFilter] = useState([]);
-  const [,setCurrentData] = useState([]);
+  const [currentData,setCurrentData] = useState([]);
 
   const seriesData = JSON.parse(localStorage.getItem("seriesData"));
 
@@ -23,13 +23,14 @@ export default function Main() {
   };
 
   const listChange = (e) => {
+    const newData = [...listSeries];
     if (e.target.value === "Most Voted") {
-      setseriesFilter(
-        seriesData.sort((prev, next) => next.point - prev.point)
+      setListSeries(
+        newData.sort((prev, next) => next.point - prev.point)
       );
     } else {
-      setseriesFilter(
-        seriesData.sort((prev, next) => prev.point - next.point)
+      setListSeries(
+        newData.sort((prev, next) => prev.point - next.point)
       );
     }
     e.target.firstChild.setAttribute("disabled", true);
@@ -94,7 +95,6 @@ export default function Main() {
     let seriesData, activePage;
     if (
       localStorage.getItem("activePage") === null ||
-      window.location.pathname === "/" ||
       window.location.pathname === "/1"
     ) {
       localStorage.setItem("activePage", 1);
@@ -102,21 +102,23 @@ export default function Main() {
       if (localStorage.getItem("series") !== null) {
         seriesData = JSON.parse(localStorage.getItem("series"));
         seriesData = seriesData.filter(
-          (value, index) => index < activePage * 5
+          (value, index) => index < activePage * 3
         );
         localStorage.setItem(
           "seriesData",
           JSON.stringify(seriesData)
         );
+      setCurrentData(JSON.parse(localStorage.getItem("seriesData")));
       }
     } else {
       seriesData = JSON.parse(localStorage.getItem("series"));
       activePage = Number(localStorage.getItem("activePage"));
       seriesData = seriesData.filter(
         (value, index) =>
-          index < activePage * 5 && index > activePage * activePage
+          index < (activePage > 2 ? ((activePage * 3) + 3) : (activePage * 3)) && index >= (activePage * activePage)
       );
       localStorage.setItem("seriesData", JSON.stringify(seriesData));
+      setCurrentData(JSON.parse(localStorage.getItem("seriesData")));
     }
   };
 
@@ -164,9 +166,9 @@ export default function Main() {
           </select>
         </div>
 
-        {seriesFilter.length === 0 && seriesData !== null
-          ? seriesData.map((series, index) => (
-              <div className="wrap-links" key={series.title}>
+        {currentData.length > 0 ? (
+          currentData.map(series => (
+            <div className="wrap-links" key={series.title}>
                 <div className="point">
                   <span className="score">{series.point}</span>
                   <span>points</span>
@@ -237,80 +239,85 @@ export default function Main() {
                   </div>
                 </div>
               </div>
-            ))
-          : seriesFilter.map((series, index) => (
-              <div className="wrap-links" key={series.title}>
-                <div className="point">
-                  <span className="score">{series.point}</span>
-                  <span>points</span>
+          ))
+        )
+        :
+        (
+          listSeries.map((series, index) => (
+            <div className="wrap-links" key={series.title}>
+              <div className="point">
+                <span className="score">{series.point}</span>
+                <span>points</span>
+              </div>
+              <div className="info">
+                <div className="title">
+                  <h3>{series.title}</h3>
+                  <a href={series.url} rel="noreferrer" target="_blank">
+                    {series.url}
+                  </a>
                 </div>
-                <div className="info">
-                  <div className="title">
-                    <h3>{series.title}</h3>
-                    <a href={series.url} rel="noreferrer" target="_blank">
-                      {series.url}
-                    </a>
-                  </div>
-                  <div className="vote">
-                    <div className="up">
-                      <span className="vote">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="icon icon-tabler icon-tabler-arrow-up"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          strokeWidth="2"
-                          stroke="currentColor"
+                <div className="vote">
+                  <div className="up">
+                    <span className="vote">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-arrow-up"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
                           fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path
-                            stroke="none"
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          ></path>
-                          <line x1="12" y1="5" x2="12" y2="19"></line>
-                          <line x1="18" y1="11" x2="12" y2="5"></line>
-                          <line x1="6" y1="11" x2="12" y2="5"></line>
-                        </svg>
-                      </span>
-                      <span onClick={() => voteUp(series)}>Up Vote</span>
-                    </div>
-                    <div className="down">
-                      <span className="vote">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="icon icon-tabler icon-tabler-arrow-down"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          strokeWidth="2"
-                          stroke="currentColor"
+                        ></path>
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="18" y1="11" x2="12" y2="5"></line>
+                        <line x1="6" y1="11" x2="12" y2="5"></line>
+                      </svg>
+                    </span>
+                    <span onClick={() => voteUp(series)}>Up Vote</span>
+                  </div>
+                  <div className="down">
+                    <span className="vote">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-arrow-down"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
                           fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path
-                            stroke="none"
-                            d="M0 0h24v24H0z"
-                            fill="none"
-                          ></path>
-                          <line x1="12" y1="5" x2="12" y2="19"></line>
-                          <line x1="18" y1="13" x2="12" y2="19"></line>
-                          <line x1="6" y1="13" x2="12" y2="19"></line>
-                        </svg>
-                      </span>
-                      <span onClick={() => voteDown(series)}>Down Vote</span>
-                    </div>
+                        ></path>
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="18" y1="13" x2="12" y2="19"></line>
+                        <line x1="6" y1="13" x2="12" y2="19"></line>
+                      </svg>
+                    </span>
+                    <span onClick={() => voteDown(series)}>Down Vote</span>
                   </div>
-                  <div className="delete" onClick={() => handle(series)}>
-                    <span>-</span>
-                  </div>
+                </div>
+                <div className="delete" onClick={() => handle(series)}>
+                  <span>-</span>
                 </div>
               </div>
-            ))}
+            </div>
+          ))
+        )}
+          
 
         {listSeries.length >= 5 && (
           <div className="pagination">
